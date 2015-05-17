@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+</head>
+<body>
+
+<div ng-app="fruit">
+    <div ng-controller="FruitCtrl">
+
+        <div ng-repeat="color in colors">
+        <input type="checkbox"/></br/>
+
+        </div>
+        <ul>
+            <li>
+                {{f.name}}
+            </li>
+        </ul>
+
+        Filter dump: {{colourIncludes}}
+    </div>
+</div>
+
+<br/>
+
+</body>
+<script type="text/javascript">
+    // Code goes here
+
+    'use strict'
+
+    angular.module('fruit', [])
+            .controller('FruitCtrl', ['$scope', function($scope){
+                $scope.fruit = [
+                    {'name': 'Apple', 'colour': 'Red'},
+                    {'name': 'Orange', 'colour': 'Orange'},
+                    {'name': 'Banana', 'colour': 'Yellow'}];
+
+                $scope.colors = [{'name' : 'Red'},
+                                 {'name' : 'Yellow'},
+                                 {'name' : 'Orange'}
+                    ];
+                $scope.colourIncludes = [];
+
+                $scope.includeColour = function(colour) {
+                    var i = $.inArray(colour, $scope.colourIncludes);
+                    if (i > -1) {
+                        $scope.colourIncludes.splice(i, 1);
+                    } else {
+                        $scope.colourIncludes.push(colour);
+                    }
+                }
+
+                $scope.colourFilter = function(fruit) {
+                    if ($scope.colourIncludes.length > 0) {
+                        if ($.inArray(fruit.colour, $scope.colourIncludes) < 0)
+                            return;
+                    }
+
+                    return fruit;
+                }
+            }]);
+</script>
+</html>

@@ -1,0 +1,88 @@
+
+
+<div class="container">
+    <div class="row profile-text">
+        Add a Product
+    </div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+            <form id="productAdd" class="product-form" role="form">
+
+                <div style="width: 50%;float:left;">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="productCode" placeholder="Product Code" ng-model="product.code"
+                               title="Enter Your Product Code"  required>
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <input type="text" class="form-control" placeholder="Product Name" ng-model="product.name"
+                                title="Enter a Product Name" required>
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <input type="text" class="form-control" placeholder="Rent Amount" ng-model="product.rentalPrice"  title="Enter product rental price" required style="width:120px;"> &nbsp;
+                        <select class="form-control" ng-model="product.duration" ng-options="duration.name for duration in durations" style="width: 120px;"> </select>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom:10px;">
+
+                        <input type="text" class="form-control" placeholder="Security Deposit"  ng-model="product.securityDeposit" title="Enter Security Deposit">
+                    </div>
+
+                    <div class="input-group" style="margin-bottom:10px;">
+
+                        <textarea class="form-control" placeholder="Product Description"  ng-model="product.description" title="Enter Product description" required></textarea>
+                    </div>
+
+                </div>
+
+                <div style="width: 50%;float:right;">
+                    <div class="input-group">
+
+                        <select class="form-control" ng-model="product.category" ng-options="category.name for category in categories" style="width: 120px;" ng-change="change();"> </select> &nbsp;
+                        <select class="form-control" ng-model="product.subCategory" ng-options="subCategory.name for subCategory in subCategories" style="width: 120px;"> </select>
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <input type="text" class="form-control" placeholder="Actual Price" ng-model="product.costPrice"
+                               title="Enter Actual Product Price" required>
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <input type="text" class="form-control" placeholder="Vendor ID" ng-model="product.vendorId"  title="Enter Vendor ID" required>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom:10px;">
+
+                        <input type="file" class="form-control" placeholder="Product Image"  id="profilePic" ng-model="product.imageName" title="Upload Image File" ng-click="fileUpload();" required>
+                    </div>
+
+                    <div class="input-group">
+                        <select class="form-control" ng-model="product.rating" ng-options="rating.name for rating in ratings"> </select> <br/><br/>
+                        <select class="form-control" ng-model="product.status" ng-options="status.name for status in statuses"> </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <button class="btn btn-lg btn-primary btn-block" ng-click="addProduct();" >Add product</button>
+                </div>
+
+
+            </form>
+
+            <button id="updateForm" ng-click="updateForm();" style="display: none;">Hello</button>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="upload-area">
+    <div id="preview">
+        <img width="100px" height="100px" src="/images/icons/128px/zurb.png" id="thumb">
+    </div>
+
+    <form action="demo_form.asp" id="newHotnessForm">
+        <label>Upload a Picture of Yourself</label>
+        <input type="file" size="20"  multiple>
+        <input type="submit">
+    </form>
+    <form action="demo_form.asp">
+        Select images: <input type="file" name="img" multiple>
+        <input type="submit">
+    </form>
+</div>
+<script src="/app/scripts/vendor/jquery.js"></script>
+<script src="http://zurb.com/playground/uploads/upload/upload/235/ajaxupload.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        var thumb = $('#thumb');
+
+        new AjaxUpload('imageUpload', {
+            action: $('#newHotnessForm').attr('action'),
+            name: 'image',
+            onSubmit: function(file, extension) {
+                $('#preview').addClass('loading');
+            },
+            onComplete: function(file, response) {
+                thumb.load(function(){
+                    $('#preview').removeClass('loading');
+                    thumb.unbind();
+                });
+                thumb.attr('src', response);
+            }
+        });
+    });
+</script>
+</body>
+</html>
